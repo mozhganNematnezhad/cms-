@@ -9,20 +9,16 @@ import "../../tabs/tabs.css";
 const Agriculture = () => {
   const [activeTab, setActiveTab] = useState("5");
   const [tab, setTab] = useState([]);
-  // console.log("tab" ,tab)
 
   const onSuccess = (data: any) => {
     const category = data?.data.result;
-    // console.log("category" ,category)
     setTab(category);
-    // console.log("its ok", data);
   };
   const onError = (data: any) => {
     console.log("its err", data);
   };
 
   const { data } = GetCategory(onSuccess, onError);
-  // console.log("tabii",data);
   return (
     <div>
       <Nav tabs className="flex flex-wrap pt-6" id="lastnews">

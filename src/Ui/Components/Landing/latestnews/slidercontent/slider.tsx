@@ -19,9 +19,7 @@ type tabId = {
 
 const Slider = ({ type }: tabId) => {
   const { mutate, isLoading } = GetNewsText();
-  // console.log("categotyIdslider",data);
   const [newsSlider, setNewsSlider] = useState([]);
-  // console.log("newsSlider" ,newsSlider)
 
   const obj = {
     page: 1,
@@ -32,10 +30,8 @@ const Slider = ({ type }: tabId) => {
   useEffect(() => {
     mutate(obj, {
       onSuccess: (val: any) => {
-        // console.log("val", val);
         try {
           const news = val?.data?.result.newsList;
-          // console.log("newsSlider",news);
           setNewsSlider(news);
         } catch (error) {
           console.log(error);
@@ -67,7 +63,6 @@ const Slider = ({ type }: tabId) => {
           </p>
         ) : newsSlider && newsSlider.length > 0 ? (
           newsSlider?.map((lastN: any) => {
-            // console.log("lastN",lastN)
             return (
               <SwiperSlide key={lastN.id}>
                 <div className="content grid grid-cols-12 pt-6">

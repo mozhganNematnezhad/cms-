@@ -14,16 +14,23 @@ import { useSlider } from "src/Core/services/public/api-slider";
 import { AiOutlineLoading } from "react-icons/ai";
 // css
 import "../../Landing/Slider/Slider.css";
+import { UseGetSetting } from "src/Core/services/public/api-footer";
 
 const Slider = () => {
   const [sliders, setSlider] = useState([]);
   const { mutate, isLoading } = useSlider();
+  const [sliderCount, setSliderCount] = useState([]);
+  const { data, isLoading: isLoadingCount } = UseGetSetting();
+  useEffect(() => {
+    const sliderImage = data?.data.result.sliderImageCount;
+    setSliderCount(sliderImage);
+  }, [isLoadingCount]);
   SwiperCore.use([Autoplay]);
 
   useEffect(() => {
     const obj = {
       page: 1,
-      pageSize: 1000,
+      pageSize: sliderCount,
       title: "",
       description: "",
       canShow: true,
@@ -44,7 +51,7 @@ const Slider = () => {
         }
       },
     });
-  }, []);
+  }, [sliderCount, isLoadingCount]);
 
   return (
     <div className="md:relative md:top-[27px] pt-[3.5rem] md:pt-[2rem] lg:pt-[3.4rem] siwperHeader">

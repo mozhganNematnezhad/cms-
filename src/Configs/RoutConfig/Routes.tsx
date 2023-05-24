@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
-
 import Layout from "../../Ui/Layout/Layout";
 
 // cms
